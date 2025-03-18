@@ -1,0 +1,390 @@
+/* src/styles/theme.css */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+  /* Paleta de colores espacial-mágica */
+  --space-bg: #0a0e18;
+  --space-card: #141b2d;
+  --magic-primary: #8a4fff;
+  --magic-secondary: #3a7bd5;
+  --magic-accent: #ff53c9;
+  --medieval-gold: #d4af37;
+  --medieval-brown: #654321;
+  --text-light: #e0e0ff;
+  --text-dim: #8890b5;
+  --border-glow: rgba(138, 79, 255, 0.3);
+  --star-color: #ffffff;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--space-bg);
+  color: var(--text-light);
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  position: relative;
+  line-height: 1.6;
+}
+
+/* Efecto de estrellas en el fondo */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(1px 1px at 25px 25px, var(--star-color) 50%, transparent 100%),
+    radial-gradient(1px 1px at 50px 100px, var(--star-color) 50%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 100px 50px, var(--star-color) 50%, transparent 100%),
+    radial-gradient(2px 2px at 175px 150px, var(--star-color) 50%, transparent 100%),
+    radial-gradient(2.5px 2.5px at 250px 100px, var(--star-color) 50%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 320px 225px, var(--star-color) 50%, transparent 100%),
+    radial-gradient(1px 1px at 400px 175px, var(--star-color) 50%, transparent 100%),
+    radial-gradient(3px 3px at 450px 300px, var(--star-color) 50%, transparent 100%);
+  background-repeat: repeat;
+  background-size: 500px 500px;
+  z-index: -1;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.main-title {
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  color: var(--text-light);
+  text-shadow: 0 0 10px var(--magic-primary), 0 0 20px var(--magic-primary);
+  letter-spacing: 1px;
+  margin-bottom: 1.5rem;
+}
+
+.subtitle {
+  font-family: 'Cinzel', serif;
+  color: var(--text-dim);
+  font-weight: 400;
+  margin-bottom: 2.5rem;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2.5rem;
+}
+
+/* Componentes */
+.magic-card {
+  background-color: var(--space-card);
+  border-radius: 12px;
+  border: 1px solid rgba(138, 79, 255, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4), 0 0 15px var(--border-glow);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  margin-bottom: 2rem;
+}
+
+.magic-card:hover {
+  box-shadow: 0 8px 35px rgba(0, 0, 0, 0.5), 0 0 20px var(--border-glow);
+  transform: translateY(-5px);
+}
+
+.magic-button {
+  background: linear-gradient(135deg, var(--magic-primary), var(--magic-secondary));
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.8rem 1.5rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(138, 79, 255, 0.4);
+}
+
+.magic-button:hover {
+  box-shadow: 0 6px 15px rgba(138, 79, 255, 0.6);
+  transform: translateY(-2px);
+}
+
+.magic-button:active {
+  transform: translateY(1px);
+}
+
+.magic-button-secondary {
+  background: transparent;
+  border: 1px solid var(--magic-primary);
+  color: var(--magic-primary);
+}
+
+.magic-button-gold {
+  background: linear-gradient(135deg, var(--medieval-gold), #b08c30);
+  color: #000;
+}
+
+.magic-input {
+  background-color: rgba(20, 27, 45, 0.7);
+  border: 1px solid rgba(138, 79, 255, 0.3);
+  border-radius: 8px;
+  padding: 0.8rem 1.2rem;
+  color: var(--text-light);
+  transition: all 0.3s ease;
+  width: calc(100%);
+  outline: none;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.magic-input:focus {
+  border-color: var(--magic-primary);
+  box-shadow: 0 0 0 2px rgba(138, 79, 255, 0.25);
+}
+
+.magic-input::placeholder {
+  color: var(--text-dim);
+}
+
+label {
+  display: block;
+  margin-bottom: 0.7rem;
+  font-weight: 500;
+  color: var(--text-dim);
+}
+
+.avatar-select {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.avatar-option {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.avatar-option:hover {
+  transform: scale(1.1);
+}
+
+.avatar-option.selected {
+  border: 3px solid var(--magic-primary);
+  box-shadow: 0 0 0 4px rgba(138, 79, 255, 0.3);
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.user-card {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem;
+  margin-bottom: 1.2rem;
+  border-bottom: 1px solid rgba(138, 79, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.user-card:last-child {
+  margin-bottom: 0;
+  border-bottom: none;
+}
+
+.user-card:hover {
+  background-color: rgba(138, 79, 255, 0.1);
+}
+
+.user-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 1.5rem;
+  border: 2px solid var(--medieval-gold);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.user-info {
+  flex: 1;
+}
+
+.user-name {
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  color: var(--text-light);
+  margin: 0 0 0.6rem 0;
+  font-size: 1.25rem;
+}
+
+.user-details {
+  color: var(--text-dim);
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.user-actions {
+  display: flex;
+  gap: 1rem;
+  margin-left: 1.5rem;
+}
+
+.user-actions button {
+  font-size: 1.1rem;
+}
+
+/* Estilo para las secciones */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid rgba(138, 79, 255, 0.2);
+}
+
+/* Animación de brillo mágico */
+@keyframes magicGlow {
+  0% { box-shadow: 0 0 8px var(--magic-primary), 0 0 10px var(--magic-primary); }
+  50% { box-shadow: 0 0 15px var(--magic-primary), 0 0 25px var(--magic-primary); }
+  100% { box-shadow: 0 0 8px var(--magic-primary), 0 0 10px var(--magic-primary); }
+}
+
+.magic-glow {
+  animation: magicGlow 2s infinite;
+}
+
+/* Tooltip personalizado */
+.magic-tooltip {
+  position: relative;
+}
+
+.magic-tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--space-card);
+  color: var(--text-light);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  border: 1px solid var(--magic-primary);
+  z-index: 10;
+}
+
+.magic-tooltip:hover::after {
+  opacity: 1;
+  bottom: 130%;
+}
+
+/* Mejorar espaciado general */
+.form-group {
+  margin-bottom: 2rem;
+}
+
+.form-group:last-child {
+  margin-bottom: 0;
+}
+
+.card-content {
+  padding: 2rem;
+}
+
+.card-header {
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid rgba(138, 79, 255, 0.2);
+}
+
+.grid-gap {
+  gap: 2.5rem;
+}
+
+/* Agregar un componente de divisor */
+.magic-divider {
+  height: 1px;
+  background: linear-gradient(90deg, 
+    rgba(138, 79, 255, 0), 
+    rgba(138, 79, 255, 0.5), 
+    rgba(138, 79, 255, 0));
+  margin: 2.5rem 0;
+}
+
+/* Contenedor con espaciado para la página principal */
+.page-container {
+  min-height: 100vh;
+  padding: 3rem 2rem;
+}
+
+/* Grid layout mejorado */
+.grid-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+}
+
+@media (min-width: 1024px) {
+  .grid-layout {
+    grid-template-columns: 2fr 3fr;
+  }
+}
+
+/* Scrollbar personalizado */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--space-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--magic-primary);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--magic-secondary);
+}
+
+/* Header mejorado */
+.page-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.page-footer {
+  margin-top: 5rem;
+  text-align: center;
+  padding: 2rem 0;
+}
+
+/* Mensaje de éxito mejorado */
+.success-message {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  background-color: var(--magic-primary);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 0 15px var(--border-glow);
+  z-index: 100;
+  animation: magicGlow 2s infinite;
+}
