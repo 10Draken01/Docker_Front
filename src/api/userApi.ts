@@ -2,7 +2,7 @@
 import axios from 'axios';
 import { User, UserCreationData, ApiResponse } from '../types';
 
-const API_URL = 'http://localhost:3001/api';
+const API_URL = 'https://blocksolution.eduartrob.com/api';
 
 // Obtener todos los usuarios
 export const fetchUsers = async (): Promise<User[]> => {
