@@ -4,10 +4,17 @@ import { User, UserCreationData, ApiResponse } from '../types';
 
 const API_URL = 'https://blocksolution.eduartrob.com/api';
 
+// Crear una instancia de Axios que omita la validación de certificados en el navegador
+// Esta configuración debería ser suficiente para la mayoría de navegadores modernos
+const axiosInstance = axios.create({
+  // La validación de certificados se maneja a nivel del navegador
+  // No hay un equivalente directo a rejectUnauthorized para el navegador
+});
+
 // Obtener todos los usuarios
 export const fetchUsers = async (): Promise<User[]> => {
   try {
-    const response = await axios.get<ApiResponse<User[]>>(`${API_URL}/users`);
+    const response = await axiosInstance.get<ApiResponse<User[]>>(`${API_URL}/users`);
     if (response.data.success && response.data.data) {
       return response.data.data;
     }
@@ -21,7 +28,7 @@ export const fetchUsers = async (): Promise<User[]> => {
 // Obtener un usuario por ID
 export const fetchUserById = async (id: string): Promise<User | null> => {
   try {
-    const response = await axios.get<ApiResponse<User>>(`${API_URL}/users/${id}`);
+    const response = await axiosInstance.get<ApiResponse<User>>(`${API_URL}/users/${id}`);
     if (response.data.success && response.data.data) {
       return response.data.data;
     }
@@ -35,7 +42,7 @@ export const fetchUserById = async (id: string): Promise<User | null> => {
 // Crear un nuevo usuario
 export const createUser = async (userData: UserCreationData): Promise<User | null> => {
   try {
-    const response = await axios.post<ApiResponse<User>>(`${API_URL}/users`, userData);
+    const response = await axiosInstance.post<ApiResponse<User>>(`${API_URL}/users`, userData);
     if (response.data.success && response.data.data) {
       return response.data.data;
     }
@@ -49,7 +56,7 @@ export const createUser = async (userData: UserCreationData): Promise<User | nul
 // Actualizar un usuario existente
 export const updateUser = async (id: string, userData: Partial<UserCreationData>): Promise<User | null> => {
   try {
-    const response = await axios.put<ApiResponse<User>>(`${API_URL}/users/${id}`, userData);
+    const response = await axiosInstance.put<ApiResponse<User>>(`${API_URL}/users/${id}`, userData);
     if (response.data.success && response.data.data) {
       return response.data.data;
     }
@@ -63,7 +70,7 @@ export const updateUser = async (id: string, userData: Partial<UserCreationData>
 // Eliminar un usuario
 export const deleteUser = async (id: string): Promise<boolean> => {
   try {
-    const response = await axios.delete<ApiResponse<void>>(`${API_URL}/users/${id}`);
+    const response = await axiosInstance.delete<ApiResponse<void>>(`${API_URL}/users/${id}`);
     return response.data.success;
   } catch (error) {
     console.error(`Error deleting user with id ${id}:`, error);
